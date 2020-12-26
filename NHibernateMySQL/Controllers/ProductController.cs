@@ -22,8 +22,8 @@ namespace NHibernateMySQL.Controllers
         {
             using (ISession session = NHibertnateSession.OpenSession())
             {
-                //var response = await session.Query<Products>().ToList();
-                var response = session.Query<Products>().ToList();
+                //var response = session.Query<Products>().ToList();
+                var response = await session.Query<Products>().ToListAsync();
                 if (response != null)
                 {
                     return Ok(response);
