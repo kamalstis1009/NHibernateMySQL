@@ -10,6 +10,7 @@ MySQL Community Server v8.0.18
 
 
 MS-SQL Server:
+<code>
 CREATE TABLE [dbo].[Products](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](250) NOT NULL,
@@ -19,10 +20,11 @@ CREATE TABLE [dbo].[Products](
 (
 	[Id] ASC
 )
-
+</code>
 
 
 MySQL Table:
+<code>
 CREATE TABLE `products` (
   `Id` int(11) NOT NULL,
   `Name` varchar(45) DEFAULT NULL,
@@ -30,4 +32,4 @@ CREATE TABLE `products` (
   `CreateAt` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+</code>
