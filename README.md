@@ -1,12 +1,21 @@
 # NHibernate MySQL8 MVC5 .NET Framework 4.5.2
 
-Microsoft Visual Studio Community 2019
-<p>MySQL Community Server v8.0.18</p>
-<p>.NET Framework 4.5.2</p>
-<p>NHibernate 4.1.2.4000</p>
-<p>NHibernateX 1.3.1.4000</p>
-<p>MySql Data 6.9.12</p>
-<p>MySql Data Entity 6.9.12</p>
+Necessary Tools:
+ <ul>
+  <li>Microsoft Visual Studio Community 2019</li>
+  <li>.NET Framework 4.5.2</li>
+  <li>MySQL Community Server v8.0.18</li>
+</ul> 
+
+
+NuGet Packages:
+ <ul>
+  <li>NHibernate 4.1.2.4000</li>
+  <li>NHibernateX 1.3.1.4000</li>
+  <li>MySql Data 6.9.12</li>
+  <li>MySql Data Entity 6.9.12</li>
+</ul> 
+
 
 
 
