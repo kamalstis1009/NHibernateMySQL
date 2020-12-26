@@ -1,4 +1,4 @@
-# NHibernateMySQL
+# NHibernate MySQL8 MVC5 .NET Framework 4.5.2
 
 Microsoft Visual Studio Community 2019
 <p>MySQL Community Server v8.0.18</p>
