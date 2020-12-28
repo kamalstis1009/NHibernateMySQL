@@ -4,7 +4,7 @@ Necessary Tools:
  <ul>
   <li>Microsoft Visual Studio Community 2019</li>
   <li>.NET Framework 4.5.2</li>
-  <li>MySQL Community Server v8.0.18</li>
+  <li>MySQL Community Server v8.0.22</li>
 </ul> 
 
 
