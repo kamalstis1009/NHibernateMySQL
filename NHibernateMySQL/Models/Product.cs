@@ -5,7 +5,7 @@ using System.Web;
 
 namespace NHibernateMySQL.Models
 {
-    public class Products
+    public class Product
     {
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }

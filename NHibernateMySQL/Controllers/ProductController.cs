@@ -23,7 +23,7 @@ namespace NHibernateMySQL.Controllers
             using (ISession session = NHibertnateSession.OpenSession())
             {
                 //var response = session.Query<Products>().ToList();
-                var response = await session.Query<Products>().ToListAsync();
+                var response = await session.Query<Product>().ToListAsync();
                 if (response != null)
                 {
                     return Ok(response);
@@ -39,7 +39,7 @@ namespace NHibernateMySQL.Controllers
         {
             using (ISession session = NHibertnateSession.OpenSession())
             {
-                var response = await session.Query<Products>().Where(index => index.Id == id).FirstOrDefaultAsync();
+                var response = await session.Query<Product>().Where(index => index.Id == id).FirstOrDefaultAsync();
                 if (response != null)
                 {
                     return Ok(response);
@@ -51,7 +51,7 @@ namespace NHibernateMySQL.Controllers
         //======================================================| Add
         [Route("Api/Product/Add")]
         [HttpPost]
-        public async Task<IHttpActionResult> AddTask([FromBody] Products item)
+        public async Task<IHttpActionResult> AddTask([FromBody] Product item)
         {
             using (ISession session = NHibertnateSession.OpenSession())
             {
@@ -73,7 +73,7 @@ namespace NHibernateMySQL.Controllers
         {
             using (ISession session = NHibertnateSession.OpenSession())
             {
-                var model = await session.Query<Products>().Where(index => index.Id == id).FirstOrDefaultAsync();
+                var model = await session.Query<Product>().Where(index => index.Id == id).FirstOrDefaultAsync();
                 if (model != null)
                 {
                     var response = session.DeleteAsync(model);
@@ -90,11 +90,11 @@ namespace NHibernateMySQL.Controllers
         //======================================================| Put/Update
         [Route("Api/Product/Update")]
         [HttpPut]
-        public async Task<IHttpActionResult> UpdateTaskById([FromUri] int id, [FromBody] Products item)
+        public async Task<IHttpActionResult> UpdateTaskById([FromUri] int id, [FromBody] Product item)
         {
             using (ISession session = NHibertnateSession.OpenSession())
             {
-                var model = await session.Query<Products>().Where(index => index.Id == id).FirstOrDefaultAsync();
+                var model = await session.Query<Product>().Where(index => index.Id == id).FirstOrDefaultAsync();
                 if (model != null)
                 {
                     model.Name = item.Name;

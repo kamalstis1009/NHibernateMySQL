@@ -11,13 +11,13 @@ namespace NHibernateMySQL.Models
     {
         public static ISession OpenSession()
         {
-            var configuration = new Configuration();
-            var configurationPath = HttpContext.Current.Server.MapPath(@"~\NHibernate\NHibernate.cfg.xml");
-            configuration.Configure(configurationPath);
-            var employeeConfigurationFile = HttpContext.Current.Server.MapPath(@"~\Models\Products.hbm.xml");
-            configuration.AddFile(employeeConfigurationFile);
-            ISessionFactory sessionFactory = configuration.BuildSessionFactory();
-            return sessionFactory.OpenSession();
+            var mConfiguration = new Configuration();
+            var path = HttpContext.Current.Server.MapPath(@"~\NHibernate\NHibernate.cfg.xml");
+            mConfiguration.Configure(path);
+            var model = HttpContext.Current.Server.MapPath(@"~\Models\Product.hbm.xml");
+            mConfiguration.AddFile(model);
+            ISessionFactory mSession = mConfiguration.BuildSessionFactory();
+            return mSession.OpenSession();
         }
     }
 }
