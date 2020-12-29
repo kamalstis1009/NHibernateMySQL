@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\NHibernateMySQL\\bin",
+    "\\NHibernateMySQL\\Controllers",
+    "\\NHibernateMySQL\\NHibernate"
   ],
-  "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
 }

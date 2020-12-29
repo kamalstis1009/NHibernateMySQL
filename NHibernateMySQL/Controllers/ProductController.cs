@@ -51,17 +51,20 @@ namespace NHibernateMySQL.Controllers
         //======================================================| Add
         [Route("Api/Product/Add")]
         [HttpPost]
-        public async Task<IHttpActionResult> AddTask([FromBody] Product item)
+        public async Task<IHttpActionResult> AddProduct([FromBody] Product item)
         {
-            using (ISession session = NHibertnateSession.OpenSession())
+            using (var _session = NHibertnateSession.OpenSession())
             {
-                var response = await session.SaveAsync(item);
-                if (response != null)
+                using (var _transaction = _session.BeginTransaction())
                 {
-                    //return Ok(response);
-                    return CreatedAtRoute(nameof(GetProductById), new { id = item.Id }, item); //https://www.jasoncavett.com/blog/converting-to-attribute-routing-in-webapi-applications/
+                    var response = await _session.SaveAsync(item);
+                    _transaction.Commit();
+                    if (response != null)
+                    {
+                        return CreatedAtRoute(nameof(GetProductById), new { id = item.Id }, item); //https://www.jasoncavett.com/blog/converting-to-attribute-routing-in-webapi-applications/
+                    }
+                    return null;  //failure;
                 }
-                return NotFound();
             }
         }
 
@@ -69,43 +72,51 @@ namespace NHibernateMySQL.Controllers
         //[Authorize]
         [Route("Api/Product/Delete")]
         [HttpDelete]
-        public async Task<IHttpActionResult> DeleteTaskById([FromUri] int id)
+        public async Task<IHttpActionResult> DeleteProductById([FromUri] int id)
         {
-            using (ISession session = NHibertnateSession.OpenSession())
+            using (var _session = NHibertnateSession.OpenSession())
             {
-                var model = await session.Query<Product>().Where(index => index.Id == id).FirstOrDefaultAsync();
-                if (model != null)
+                using (var _transaction = _session.BeginTransaction())
                 {
-                    var response = session.DeleteAsync(model);
-                    if (response != null)
+                    var model = await _session.Query<Product>().Where(index => index.Id == id).FirstOrDefaultAsync();
+                    if (model != null)
                     {
-                        return Ok(response);
+                        var response = _session.DeleteAsync(model);
+                        _transaction.Commit();
+                        if (response != null)
+                        {
+                            return Ok(response);
+                        }
+                        return NotFound();
                     }
                     return NotFound();
                 }
-                return NotFound();
             }
         }
 
         //======================================================| Put/Update
         [Route("Api/Product/Update")]
         [HttpPut]
-        public async Task<IHttpActionResult> UpdateTaskById([FromUri] int id, [FromBody] Product item)
+        public async Task<IHttpActionResult> UpdateProductById([FromUri] int id, [FromBody] Product item)
         {
-            using (ISession session = NHibertnateSession.OpenSession())
+            using (var _session = NHibertnateSession.OpenSession())
             {
-                var model = await session.Query<Product>().Where(index => index.Id == id).FirstOrDefaultAsync();
-                if (model != null)
+                using (var _transaction = _session.BeginTransaction())
                 {
-                    model.Name = item.Name;
-                    model.Brand = item.Brand;
+                    var model = await _session.Query<Product>().Where(index => index.Id == id).FirstOrDefaultAsync();
+                    if (model != null)
+                    {
+                        model.Name = item.Name;
+                        model.Brand = item.Brand;
+                    }
+                    var response = _session.SaveOrUpdateAsync(model);
+                    _transaction.Commit();
+                    if (response != null)
+                    {
+                        return Ok(response);
+                    }
+                    return NotFound();
                 }
-                var response = session.SaveOrUpdateAsync(model);
-                if (response != null)
-                {
-                    return Ok(response);
-                }
-                return NotFound();
             }
         }
 
